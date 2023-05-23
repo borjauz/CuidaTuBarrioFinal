@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/logo"
+    android:orientation="vertical"
+    tools:context=".Incidencia">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="96dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:fontFamily="@font/advent_pro_bold"
+            android:gravity="center"
+            android:text="@string/tvRegistrarIncidencia"
+            android:textColor=" #1f631f"
+            android:textSize="40sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="283dp">
+
+        <EditText
+            android:id="@+id/editTextDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="251dp"
+            android:fontFamily="@font/advent_pro_medium"
+            android:gravity="start"
+            android:hint="@string/descIincidencia"
+            android:textColorHint=" #1f631f"
+            android:textSize="30sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tvFoto"
+            android:textColor="#1f631f"
+            android:textSize="24sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="87dp">
+
+        <Button
+            android:id="@+id/buttonFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#1f631f"
+            android:text="@string/botonFoto"
+            android:textColor="#ffffff"
+            android:textSize="34sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="117dp">
+
+        <Button
+            android:id="@+id/buttonIncidencia"
+            android:layout_width="142dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="132dp"
+            android:layout_marginBottom="92dp"
+            android:backgroundTint="#1f631f"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/incidendia"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="117dp">
+
+        <Button
+            android:id="@+id/buttonForo"
+            android:layout_width="142dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="132dp"
+            android:layout_marginBottom="92dp"
+            android:backgroundTint="#1f631f"
+            android:fontFamily="sans-serif-medium"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:hint="@string/boton_Foro"
+            android:text="@string/boton_Foro"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
+
+    </TableRow>
+
+</LinearLayout>

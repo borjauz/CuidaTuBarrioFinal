@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CuidaTuBarrioFinal</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="TituloMain">Cuida tu barrio</string>
+    <string name="Contrasena">Contraseña</string>
+    <string name="Registro">Registrarse</string>
+    <string name="Acceder">Iniciar Sesión</string>
+    <string name="hintDni">DNI (solo registro)</string>
+    <string name="tvRegistrarIncidencia">Registro de incidencias</string>
+    <string name="descIincidencia">Añada una descripción de su incidencia: </string>
+    <string name="incidendia">Registrar incidencia</string>
+    <string name="descripcionComentario">Añada su comentario</string>
+    <string name="botonPublicar">Publicar</string>
+    <string name="usuario">Usuario</string>
+    <string name="boton_Foro">Acceda al foro</string>
+    <string name="tvFoto">Añada foto de la incidencia</string>
+    <string name="botonFoto">+</string>
+</resources>

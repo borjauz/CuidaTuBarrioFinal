@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#81C354"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextUsuario"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:fontFamily="@font/advent_pro_medium"
+        android:hint="@string/usuario"
+        android:textColorHint="#1f631f"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextContrasena" />
+
+    <Button
+        android:id="@+id/buttonRegistro"
+        android:layout_width="160dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#1f631f"
+        android:text="@string/Registro"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
+
+    <Button
+        android:id="@+id/buttonAcceder"
+        android:layout_width="160dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#1f631f"
+        android:text="@string/Acceder"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="211dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/advent_pro_bold"
+        android:text="@string/TituloMain"
+        android:textAlignment="center"
+        android:textColor="#1f631f"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextContrasena"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:fontFamily="@font/advent_pro_medium"
+        android:hint="@string/Contrasena"
+        android:inputType="textPassword"
+        android:textColorHint="#1f631f"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDni" />
+
+    <EditText
+        android:id="@+id/editTextDni"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:fontFamily="@font/advent_pro_medium"
+        android:hint="@string/hintDni"
+        android:inputType="text"
+        android:textColorHint="#1f631f"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
