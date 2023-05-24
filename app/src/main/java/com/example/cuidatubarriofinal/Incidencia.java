@@ -1,6 +1,8 @@
 package com.example.cuidatubarriofinal;
 
-import androidx.annotation.NonNull;
+import android.Manifest;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,9 +33,8 @@ public class Incidencia extends AppCompatActivity {
     private String usuario;
 
     private Bitmap imagenTomada;
-
-    private static final int REQUEST_CAMERA_PERMISSION = 200;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_PERMISSION_CAMERA = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,78 +55,56 @@ public class Incidencia extends AppCompatActivity {
         });
 
         botFoto.setOnClickListener(v -> {
-            if (ContextCompat.checkSelfPermission(Incidencia.this, android.Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(Incidencia.this,
-                        new String[]{android.Manifest.permission.CAMERA},
-                        REQUEST_CAMERA_PERMISSION);
-            } else {
-                abrirCamara();
-            }
+            checkCameraPermission();
         });
     }
-
-
-
-
-    String currentPhotoPath;
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
+    private void checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED) {
+            abrirCamara();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
+                    REQUEST_PERMISSION_CAMERA);
+            checkCameraPermission();
+        }
     }
+
 
     private void abrirCamara() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                ex.printStackTrace();
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        }
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if(data!=null){
-                Bundle extras = data.getExtras();
-                imagenTomada = (Bitmap) extras.get("data");
-            }
+            Bundle extras = data.getExtras();
+            imagenTomada = (Bitmap) extras.get("data");
+            galleryAddPic(imagenTomada);
         }
     }
 
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(currentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+    private void galleryAddPic(Bitmap imagen) {
+        File storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String fileName = "IMG_" + timeStamp + ".jpg";
+        File imageFile = new File(storage, fileName);
+
+        try{
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            imagen.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            Intent mediaScan = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            mediaScan.setData(Uri.fromFile(imageFile));
+            sendBroadcast(mediaScan);
+
+            Toast.makeText(this, "imagen guardada", Toast.LENGTH_SHORT);
+        }catch (Exception e){
+
+        }
     }
 
     private void nextActivity() {

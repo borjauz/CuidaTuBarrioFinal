@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(BuildConfig.DEBUG) {
+            StrictMode.enableDefaults();
+        }
         editDni = findViewById(R.id.editTextDni);
         editContrasena = findViewById(R.id.editTextContrasena);
         editUsuario = findViewById(R.id.editTextUsuario);
