@@ -1,15 +1,28 @@
 package com.example.cuidatubarriofinal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cuidatubarriofinal.dto.RegistroDTO;
+
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,14 +31,12 @@ public class MainActivity extends AppCompatActivity {
     private Connection connection = null;
     private String dni, contrasena, usuario;
 
+    private static final int PERMISSION_REQUEST_INTERNET = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if(BuildConfig.DEBUG) {
-            StrictMode.enableDefaults();
-        }
         editDni = findViewById(R.id.editTextDni);
         editContrasena = findViewById(R.id.editTextContrasena);
         editUsuario = findViewById(R.id.editTextUsuario);
@@ -35,21 +46,33 @@ public class MainActivity extends AppCompatActivity {
 
         getData();
 
+        // Verificar si ya se tiene el permiso
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.INTERNET},
+                    PERMISSION_REQUEST_INTERNET);
+        }
+
         buttonLogin.setOnClickListener(v -> {
             login();
         });
 
         buttonRegistrarse.setOnClickListener(v -> {
-            registro();
+            try {
+                registro();
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
-    private void registro() {
+    private void registro() throws ExecutionException, InterruptedException {
+        getData();
         if(checkDni(dni)){
             if (checkData(contrasena, usuario)) {
-                if(checkInDataBase(dni, usuario, "")){
-                    registerUser(dni, usuario, contrasena);
-                }
+                registerUser(dni, usuario, contrasena);
             }
         }
     }
@@ -57,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void login() {
         nextActivity();
         /*
+        getData();
         if(checkData(contrasena, usuario)){
             if(checkInDataBase("", usuario, contrasena)){
                 nextActivity();
@@ -94,13 +118,15 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    //IMPLEMENTAR
-    private boolean checkInDataBase(String dni, String usuario, String contrasena){
-        return true;
-    }
-
-    private void registerUser(String dni, String usuario, String contrasena){
-
+    private void registerUser(String dni, String usuario, String contrasena) throws ExecutionException, InterruptedException {
+        RegistroTask registroTask = new RegistroTask();
+        RegistroDTO registroDTO = new RegistroDTO(dni, contrasena, usuario);
+        boolean realizado = registroTask.execute(registroDTO).get();
+        if (realizado){
+            nextActivity();
+        } else {
+            Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void nextActivity(){
@@ -114,4 +140,6 @@ public class MainActivity extends AppCompatActivity {
         contrasena = editContrasena.getText().toString().trim();
         usuario = editUsuario.getText().toString().trim();
     }
+
 }
+
