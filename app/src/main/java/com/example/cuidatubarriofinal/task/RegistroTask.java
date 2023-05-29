@@ -1,4 +1,4 @@
-package com.example.cuidatubarriofinal;
+package com.example.cuidatubarriofinal.task;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -21,9 +21,8 @@ import okhttp3.Response;
 @SuppressLint("StaticFieldLeak")
 public class RegistroTask extends AsyncTask<RegistroDTO, Void, Boolean> {
 
-    private static final String URL = "http://192.168.0.39:8080/registro/usuario";
+    private static final String URL = "http://192.168.1.140:8080/usuario/registro";
 
-    private String usuario, contrasena, dni;
     private boolean realizado;
 
     public RegistroTask() {

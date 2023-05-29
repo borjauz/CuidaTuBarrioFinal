@@ -9,8 +9,8 @@
 
     <EditText
         android:id="@+id/editTextUsuario"
-        android:layout_width="300dp"
-        android:layout_height="58dp"
+        android:layout_width="303dp"
+        android:layout_height="85dp"
         android:layout_marginTop="44dp"
         android:ems="10"
         android:fontFamily="@font/advent_pro_medium"

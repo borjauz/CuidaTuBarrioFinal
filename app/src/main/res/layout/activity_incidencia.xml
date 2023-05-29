@@ -68,7 +68,7 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="117dp">
+        android:layout_height="86dp">
 
         <Button
             android:id="@+id/buttonIncidencia"

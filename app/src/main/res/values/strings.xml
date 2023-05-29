@@ -6,14 +6,16 @@
     <string name="Contrasena">Contraseña</string>
     <string name="Registro">Registrarse</string>
     <string name="Acceder">Iniciar Sesión</string>
-    <string name="hintDni">DNI (solo registro)</string>
+    <string name="hintDni">DNI</string>
     <string name="tvRegistrarIncidencia">Registro de incidencias</string>
     <string name="descIincidencia">Añada una descripción de su incidencia: </string>
     <string name="incidendia">Registrar incidencia</string>
     <string name="descripcionComentario">Añada su comentario</string>
     <string name="botonPublicar">Publicar</string>
-    <string name="usuario">Usuario</string>
+    <string name="usuario">Nombre completo (Solo registro)</string>
     <string name="boton_Foro">Acceda al foro</string>
     <string name="tvFoto">Añada foto de la incidencia</string>
     <string name="botonFoto">+</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
