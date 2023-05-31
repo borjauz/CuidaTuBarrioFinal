@@ -2,6 +2,7 @@ package com.example.cuidatubarriofinal.task;
 
 import android.os.AsyncTask;
 
+import com.example.cuidatubarriofinal.ObtenerIP;
 import com.example.cuidatubarriofinal.dto.IncidenciaDTO;
 import com.google.gson.Gson;
 
@@ -15,7 +16,7 @@ import okhttp3.Response;
 
 public class IncidenciaTask extends AsyncTask<IncidenciaDTO, Void, Boolean> {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static final String URL_API = "http://192.168.1.140:8080/incidencias/nueva"; // URL de la API
+    private static final String URL_API = ObtenerIP.IP +"/incidencias/nueva"; // URL de la API
 
     @Override
     protected Boolean doInBackground(IncidenciaDTO... incidencias) {

@@ -2,7 +2,9 @@ package com.example.cuidatubarriofinal.task;
 
 import android.os.AsyncTask;
 
-import com.example.cuidatubarriofinal.dto.ComentarioDTO;
+import com.example.cuidatubarriofinal.ObtenerIP;
+import com.example.cuidatubarriofinal.R;
+import com.example.cuidatubarriofinal.dto.PublicarDTO;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -13,12 +15,14 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ComentarioTask extends AsyncTask<ComentarioDTO, Void, Boolean> {
+public class ComentarioTask extends AsyncTask<PublicarDTO, Void, Boolean> {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static final String URL_API = "http://192.168.1.140:8080/comentarios/nuevo"; // URL de la API
+    private static final String URL_API = ObtenerIP.IP +"/comentarios/nuevo"; // URL de la API
+
+
 
     @Override
-    protected Boolean doInBackground(ComentarioDTO... comentarios) {
+    protected Boolean doInBackground(PublicarDTO... comentarios) {
         OkHttpClient client = new OkHttpClient();
         Gson gson = new Gson();
         boolean exito = false;
@@ -52,8 +56,4 @@ public class ComentarioTask extends AsyncTask<ComentarioDTO, Void, Boolean> {
         return exito;
     }
 
-    @Override
-    protected void onPostExecute(Boolean resultado) {
-        // Aquí puedes manejar el resultado de la tarea, por ejemplo, mostrar un mensaje de éxito o error.
-    }
 }

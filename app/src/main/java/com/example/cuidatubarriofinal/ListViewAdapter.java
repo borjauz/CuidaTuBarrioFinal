@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cuidatubarriofinal.dto.ComentarioDTO;
 
@@ -50,6 +51,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder.usuarioTextView = convertView.findViewById(R.id.usuarioTextView);
             viewHolder.comentarioTextView = convertView.findViewById(R.id.comentarioTextView);
             viewHolder.deleteButton = convertView.findViewById(R.id.deleteButton);
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -58,6 +60,7 @@ public class ListViewAdapter extends BaseAdapter {
         final ComentarioDTO comentario = comentarios.get(position);
         viewHolder.usuarioTextView.setText(comentario.getUsuario());
         viewHolder.comentarioTextView.setText(comentario.getComentario());
+
 
         viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

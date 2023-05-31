@@ -38,7 +38,7 @@ public class Incidencia extends AppCompatActivity {
 
     private EditText descripcion;
     private Button botFoto, botIncidencia, botForo;
-    private String dni, usuario;
+    private String dni;
     private Bitmap imagenTomada;
     byte[] imagenFinal;
 
@@ -59,7 +59,7 @@ public class Incidencia extends AppCompatActivity {
 
         Intent intent = getIntent();
         dni = intent.getStringExtra("dni");
-        usuario = intent.getStringExtra("usuario");
+
 
         botForo.setOnClickListener(v -> {
             nextActivity();
@@ -163,7 +163,6 @@ public class Incidencia extends AppCompatActivity {
     private void nextActivity() {
         Intent intent = new Intent(this, Foro.class);
         intent.putExtra("dni", dni);
-        intent.putExtra("usuario", usuario);
         startActivity(intent);
     }
 }

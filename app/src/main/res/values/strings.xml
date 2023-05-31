@@ -16,6 +16,7 @@
     <string name="boton_Foro">Acceda al foro</string>
     <string name="tvFoto">Añada foto de la incidencia</string>
     <string name="botonFoto">+</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="boton_Borrar_Coment">X</string>
+    <string name="IP">192.168.1.140</string>
 </resources>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.cuidatubarriofinal.ObtenerIP;
 import com.example.cuidatubarriofinal.dto.RegistroDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +22,7 @@ import okhttp3.Response;
 @SuppressLint("StaticFieldLeak")
 public class RegistroTask extends AsyncTask<RegistroDTO, Void, Boolean> {
 
-    private static final String URL = "http://192.168.1.140:8080/usuario/registro";
+    private static final String URL = ObtenerIP.IP +"/usuario/registro";
 
     private boolean realizado;
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.cuidatubarriofinal.ObtenerIP;
 import com.example.cuidatubarriofinal.dto.LoginDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,7 +21,7 @@ import okhttp3.Response;
 @SuppressLint("StaticFieldLeak")
 public class LoginTask extends AsyncTask<LoginDTO, Void, Boolean> {
 
-    private static final String URL = "http://192.168.1.140:8080/usuarios/login";
+    private static final String URL = ObtenerIP.IP +"/usuarios/login";
 
     private String usuario, contrasena, dni;
     private boolean realizado;

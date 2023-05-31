@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.cuidatubarriofinal.dto.ComentarioDTO;
+import com.example.cuidatubarriofinal.dto.PublicarDTO;
 import com.example.cuidatubarriofinal.task.ComentarioTask;
 import com.example.cuidatubarriofinal.task.ObtenerComentariosTask;
 
@@ -68,9 +71,9 @@ public class Foro extends AppCompatActivity {
     }
 
     private void publicar() throws ExecutionException, InterruptedException {
-        ComentarioDTO comentarioDTO = new ComentarioDTO(usuario, dni, comentario);
+        PublicarDTO publicarDTO = new PublicarDTO(dni, comentario);
         ComentarioTask comentarioTask = new ComentarioTask();
-        comentarioTask.execute(comentarioDTO).get();
+        comentarioTask.execute(publicarDTO).get();
         List<ComentarioDTO> listaComentarios;
         try {
             listaComentarios = obtenerListaComentarios();
@@ -87,15 +90,17 @@ public class Foro extends AppCompatActivity {
     }
 
     private void mostrarComentarios() throws ExecutionException, InterruptedException {
-        ComentarioDTO comentarioDTO = new ComentarioDTO();
-        ComentarioTask comentarioTask = new ComentarioTask();
-        comentarioTask.execute(comentarioDTO).get();
+        ObtenerComentariosTask comentarioTask = new ObtenerComentariosTask();
+        List<ComentarioDTO> listaComentarios = comentarioTask.execute().get();
 
     }
 
     private List<ComentarioDTO> obtenerListaComentarios() throws ExecutionException, InterruptedException {
         ObtenerComentariosTask obtenerComentariosTask = new ObtenerComentariosTask();
         List<ComentarioDTO> listaComentarios = obtenerComentariosTask.execute().get();
+        for(ComentarioDTO comentario :listaComentarios){
+            Log.d("comentario", comentario.toString());
+        }
         return listaComentarios;
     }
 

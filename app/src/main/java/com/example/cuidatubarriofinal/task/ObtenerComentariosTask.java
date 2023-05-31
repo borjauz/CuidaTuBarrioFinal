@@ -1,7 +1,9 @@
 package com.example.cuidatubarriofinal.task;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.example.cuidatubarriofinal.ObtenerIP;
 import com.example.cuidatubarriofinal.dto.ComentarioDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,9 +21,8 @@ import okhttp3.Response;
 
 public class ObtenerComentariosTask extends AsyncTask<Void, Void, List<ComentarioDTO>> {
 
-    private static final String URL = "http://192.168.1.140:8080/comentarios/lista";
+    private static final String URL = ObtenerIP.IP +"/comentarios/lista";
 
-    private String usuario, contrasena, dni;
     private boolean realizado;
 
     public ObtenerComentariosTask() {
@@ -49,6 +50,7 @@ public class ObtenerComentariosTask extends AsyncTask<Void, Void, List<Comentari
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     String responseBody = response.body().string();
+                    Log.d("respuesta", responseBody);
                     Type listType = new TypeToken<List<ComentarioDTO>>() {
                     }.getType();
                     return gson.fromJson(responseBody, listType);

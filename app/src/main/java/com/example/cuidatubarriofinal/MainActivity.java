@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
     private void getData() {
         dni = editDni.getText().toString().trim();
         contrasena = editContrasena.getText().toString().trim();
-        usuario = editUsuario.getText().toString().trim();
     }
 
 }
