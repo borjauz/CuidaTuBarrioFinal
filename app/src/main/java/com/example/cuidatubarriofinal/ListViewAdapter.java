@@ -50,7 +50,6 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.usuarioTextView = convertView.findViewById(R.id.usuarioTextView);
             viewHolder.comentarioTextView = convertView.findViewById(R.id.comentarioTextView);
-            viewHolder.deleteButton = convertView.findViewById(R.id.deleteButton);
 
             convertView.setTag(viewHolder);
         } else {
