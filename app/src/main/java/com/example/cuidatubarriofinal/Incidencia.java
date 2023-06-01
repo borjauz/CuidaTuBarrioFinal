@@ -45,7 +45,6 @@ public class Incidencia extends AppCompatActivity {
     private double latitud, longitud;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_PERMISSION_CAMERA = 2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +149,9 @@ public class Incidencia extends AppCompatActivity {
             Boolean result = incidenciaTask.execute(incidenciaDTO).get();
             if(!result){
                 Toast.makeText(this, "Error, incidencia no registrada", Toast.LENGTH_SHORT).show();
+            }else{
+                descripcion.setText("");
+                Toast.makeText(this, "Incidencia registrada", Toast.LENGTH_SHORT).show();
             }
         } catch (ExecutionException e) {
             throw new RuntimeException(e);

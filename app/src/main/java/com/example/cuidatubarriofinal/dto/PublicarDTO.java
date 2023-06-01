@@ -7,7 +7,6 @@ public class PublicarDTO {
         this.dniUsuario = dniUsuario;
         this.comentario = comentario;
     }
-
     public String getDniUsuario() {
         return dniUsuario;
     }

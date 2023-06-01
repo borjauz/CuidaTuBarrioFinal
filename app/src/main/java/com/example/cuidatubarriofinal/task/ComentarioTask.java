@@ -19,8 +19,6 @@ public class ComentarioTask extends AsyncTask<PublicarDTO, Void, Boolean> {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static final String URL_API = ObtenerIP.IP +"/comentarios/nuevo"; // URL de la API
 
-
-
     @Override
     protected Boolean doInBackground(PublicarDTO... comentarios) {
         OkHttpClient client = new OkHttpClient();
@@ -52,7 +50,6 @@ public class ComentarioTask extends AsyncTask<PublicarDTO, Void, Boolean> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return exito;
     }
 

@@ -29,7 +29,6 @@ public class ObtenerComentariosTask extends AsyncTask<Void, Void, List<Comentari
         realizado = false;
     }
 
-
     @Override
     protected List<ComentarioDTO> doInBackground(Void... voids) {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -42,12 +41,14 @@ public class ObtenerComentariosTask extends AsyncTask<Void, Void, List<Comentari
         Gson gson = new GsonBuilder().create();
         try {
             try {
+
                 Request request = new Request.Builder()
                         .url(URL)
                         .get()
                         .build();
-
+                // Enviar la solicitud y obtener la respuesta
                 Response response = client.newCall(request).execute();
+                // Verificar si la solicitud fue exitosa (código de respuesta 200)
                 if (response.isSuccessful()) {
                     String responseBody = response.body().string();
                     Log.d("respuesta", responseBody);

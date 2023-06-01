@@ -7,7 +7,6 @@ public class LoginDTO {
         this.dni = dni;
         this.password = password;
     }
-
     public LoginDTO() {
     }
 }

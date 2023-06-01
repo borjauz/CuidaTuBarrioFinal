@@ -53,8 +53,4 @@ public class IncidenciaTask extends AsyncTask<IncidenciaDTO, Void, Boolean> {
         return exito;
     }
 
-    @Override
-    protected void onPostExecute(Boolean resultado) {
-        // Aquí puedes manejar el resultado de la tarea, por ejemplo, mostrar un mensaje de éxito o error.
-}
 }

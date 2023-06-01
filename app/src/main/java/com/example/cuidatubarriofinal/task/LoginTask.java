@@ -23,7 +23,6 @@ public class LoginTask extends AsyncTask<LoginDTO, Void, Boolean> {
 
     private static final String URL = ObtenerIP.IP +"/usuarios/login";
 
-    private String usuario, contrasena, dni;
     private boolean realizado;
 
     public LoginTask() {

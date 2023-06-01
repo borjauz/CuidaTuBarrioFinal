@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editDni, editContrasena, editUsuario;
     Button buttonLogin, buttonRegistrarse;
-    private Connection connection = null;
     private String dni, contrasena, usuario;
 
     private static final int PERMISSION_REQUEST_INTERNET = 1;
@@ -39,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonAcceder);
         buttonRegistrarse = findViewById(R.id.buttonRegistro);
 
+        //recoge datos de editText
         getData();
 
-        // Verificar si ya se tiene el permiso
+        // Verificar si ya se tiene el permiso, sino lo pide
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.INTERNET},
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         if (realizado){
             nextActivity();
         } else {
-            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Dni o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         if (realizado){
             nextActivity();
         } else {
-            Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ese dni ya ha sido registrado", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
     private void getData() {
         dni = editDni.getText().toString().trim();
         contrasena = editContrasena.getText().toString().trim();
+        usuario = editUsuario.getText().toString().trim();
     }
 
 }

@@ -60,20 +60,11 @@ public class ListViewAdapter extends BaseAdapter {
         viewHolder.usuarioTextView.setText(comentario.getUsuario());
         viewHolder.comentarioTextView.setText(comentario.getComentario());
 
-
-        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lógica para borrar el comentario
-            }
-        });
-
         return convertView;
     }
 
     private static class ViewHolder {
         TextView usuarioTextView;
         TextView comentarioTextView;
-        Button deleteButton;
     }
 }

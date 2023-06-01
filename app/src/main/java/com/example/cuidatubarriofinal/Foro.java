@@ -23,26 +23,18 @@ public class Foro extends AppCompatActivity {
     Button botonPublicar;
     EditText editTextComentario;
     String comentario;
-    String usuario, dni;
+    String dni;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foro);
 
         botonPublicar=findViewById(R.id.buttonSubmit);
-
         editTextComentario = findViewById(R.id.editTextDescription);
+
         Intent intent = getIntent();
-        usuario = intent.getStringExtra("usuario");
         dni = intent.getStringExtra("dni");
 
-        try {
-            mostrarComentarios();
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         List<ComentarioDTO> listaComentarios;
         try {
             listaComentarios = obtenerListaComentarios();
@@ -86,13 +78,8 @@ public class Foro extends AppCompatActivity {
             ListView listView = findViewById(R.id.listViewDebates);
             ListViewAdapter adapter = new ListViewAdapter(this, listaComentarios);
             listView.setAdapter(adapter);
+            editTextComentario.setText("");
         }
-    }
-
-    private void mostrarComentarios() throws ExecutionException, InterruptedException {
-        ObtenerComentariosTask comentarioTask = new ObtenerComentariosTask();
-        List<ComentarioDTO> listaComentarios = comentarioTask.execute().get();
-
     }
 
     private List<ComentarioDTO> obtenerListaComentarios() throws ExecutionException, InterruptedException {
