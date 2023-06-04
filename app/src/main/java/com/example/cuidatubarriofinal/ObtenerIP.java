@@ -1,6 +1,5 @@
 package com.example.cuidatubarriofinal;
 
-import android.content.Context;
 
 public class ObtenerIP {
 

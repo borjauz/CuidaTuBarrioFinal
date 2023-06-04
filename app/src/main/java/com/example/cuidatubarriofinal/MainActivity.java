@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.INTERNET},
                     PERMISSION_REQUEST_INTERNET);
+        }if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            Toast.makeText(this, "Ya hay permisos", Toast.LENGTH_SHORT).show();
         }
 
         buttonLogin.setOnClickListener(v -> {

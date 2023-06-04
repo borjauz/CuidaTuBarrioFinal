@@ -59,7 +59,6 @@ public class Incidencia extends AppCompatActivity {
         Intent intent = getIntent();
         dni = intent.getStringExtra("dni");
 
-
         botForo.setOnClickListener(v -> {
             nextActivity();
         });
