@@ -52,12 +52,16 @@ public class Foro extends AppCompatActivity {
 
         botonPublicar.setOnClickListener(v -> {
             comentario = editTextComentario.getText().toString();
-            try {
-                publicar();
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (comentario != null && !comentario.isEmpty()) {
+                try {
+                    publicar();
+                } catch (ExecutionException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                Toast.makeText(this, "Escriba su comentario", Toast.LENGTH_SHORT).show();
             }
         });
     }
